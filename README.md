@@ -18,3 +18,20 @@ python3 -m pip install google-adk==1.2.1
 python3 -m pip install -r requirements.txt
 
 git clone https://github.com/yewei369/adk_telco.git
+
+# to containerize
+docker build -t telco .
+docker run -it --name telco telco
+
+
+# to deploy
+
+
+gcloud run deploy telco-agent-2 \
+--source . \
+--region europe-west1 \
+--platform managed \
+--allow-unauthenticated \
+--project hacker2025-team-212-dev \
+--set-env-vars="GOOGLE_GENAI_USE_VERTEXAI=TRUE,GOOGLE_CLOUD_PROJECT=hacker2025-team-212-dev,GOOGLE_CLOUD_LOCATION=us-central1,MODEL=gemini-2.0-flash-001" \
+--service-account only4cloudrun@hacker2025-team-212-dev.iam.gserviceaccount.com

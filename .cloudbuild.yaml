@@ -22,7 +22,7 @@ steps:
     '--platform', 'managed',
     '--allow-unauthenticated',
     '--project', '$PROJECT_ID',
-    '--service-account', 'hacker2025-team-212-dev@appspot.gserviceaccount.com',
+    '--service-account', 'only4cloudrun@hacker2025-team-212-dev.iam.gserviceaccount.com',
     '--set-env-vars', 'GOOGLE_GENAI_USE_VERTEXAI=TRUE,GOOGLE_CLOUD_PROJECT=hacker2025-team-212-dev,GOOGLE_CLOUD_LOCATION=us-central1,MODEL=gemini-2.0-flash-001'
   ]
 images:

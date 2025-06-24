@@ -24,10 +24,10 @@ COPY . /app
 RUN pip install --no-cache-dir --upgrade pip
 
 # ENV
-ENV GOOGLE_GENAI_USE_VERTEXAI TRUE
-ENV GOOGLE_CLOUD_PROJECT hacker2025-team-212-dev
-ENV GOOGLE_CLOUD_LOCATION us-central1
-ENV MODEL gemini-2.0-flash-001
+ENV GOOGLE_GENAI_USE_VERTEXAI=TRUE
+ENV GOOGLE_CLOUD_PROJECT=hacker2025-team-212-dev
+ENV GOOGLE_CLOUD_LOCATION=us-central1
+ENV MODEL=gemini-2.0-flash-001
 
 
 # Install common Python dependencies from requirements.txt (excluding ADK)
