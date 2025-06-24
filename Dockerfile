@@ -1,5 +1,5 @@
 # Stage 0: Main Application - for building your actual service
-FROM python:3.12-slim-buster
+FROM python:3.12.3-slim-buster
 
 # Set the working directory in the container
 WORKDIR /app
