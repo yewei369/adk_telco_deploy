@@ -1,0 +1,52 @@
+# agent_registry.yaml - For MVP deployment with consolidated agent.py
+
+orchestrator:
+  name: live_agent_bridge
+  description: Routes the session to the right sub-agent based on context.
+  sub_agents:
+    - root_agent # This is the root agent that will receive initial requests
+    # All other agents (diagnostics_agent, troubleshooting_rag_agent, etc.) are sub_agents
+    # of comcast_ai_assistant or are called by other agents. The orchestrator needs to
+    # know about all named agents it might directly dispatch to or refer to.
+    - diagnostics_agent
+    - troubleshooting_rag_agent
+    - booking_agent
+    - policy_agent
+    - log_agent
+    - status_agent
+
+agents:
+  # All these agents' Python code is now located in the single 'agent.py' file.
+  # The 'endpoint: local_python://agent.py' tells the orchestrator where to find them.
+
+  # 0. Root Agent for initiating conversation in ADK Dev UI/Testing
+  - name: root_agent
+    description: The main AI assistant for diagnosing and resolving internet issues.
+    endpoint: local_python://telco_agent/agent.py
+
+  # 1. Diagnostics Agent  - This still points to the deployed Cloud Function
+  - name: diagnostic_agent
+    description: Performs automated network and device diagnostics, integrates with DownDetector.se and OSS.
+    endpoint: local_python://telco_agent/agent.py
+
+  # 2. Troubleshooting RAG Agent
+  - name: rag_agent
+    description: Searches knowledge base and external sources for troubleshooting steps.
+    endpoint: local_python://telco_agent/agent.py
+
+  # 3. Reroute Agent
+  - name: reroute_agent
+    description: Determines escalation or retry conditions and orchestrates handoffs.
+    endpoint: local_python://telco_agent/agent.py
+
+  # 4. Booking Agent
+  - name: booking_agent
+    description: Schedules technician visits or initiates firmware updates.
+    endpoint: local_python://telco_agent/agent.py
+
+  # 5. Log Agent
+  - name: log_agent
+    description: Logs all conversational and diagnostic data for analytics and knowledge base.
+    endpoint: local_python://telco_agent/agent.py
+
+

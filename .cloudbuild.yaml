@@ -1,0 +1,30 @@
+# cloudbuild.yaml - UPDATED FOR EUROPE-WEST1 ARTIFACT REGISTRY
+
+steps:
+# Build the Docker image
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '-t', 'europe-west1-docker.pkg.dev/$PROJECT_ID/adk-repo/adk-orchestrator:$_BUILD_ID', # <--- CHANGED REGION HERE
+    '.'
+  ]
+# Push the Docker image to Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'push', 'europe-west1-docker.pkg.dev/$PROJECT_ID/adk-repo/adk-orchestrator:$_BUILD_ID' # <--- CHANGED REGION HERE
+  ]
+# Deploy to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: [
+    'run', 'deploy', 'adk-orchestrator-service',
+    '--image', 'europe-west1-docker.pkg.dev/$PROJECT_ID/adk-repo/adk-orchestrator:$_BUILD_ID', # <--- CHANGED REGION HERE
+    '--region', 'europe-west1', # This was already correct
+    '--platform', 'managed',
+    '--allow-unauthenticated',
+    '--project', '$PROJECT_ID',
+    '--service-account', 'hacker2025-team-212-dev@appspot.gserviceaccount.com',
+    '--set-env-vars', 'GOOGLE_GENAI_USE_VERTEXAI=TRUE,GOOGLE_CLOUD_PROJECT=hacker2025-team-212-dev,GOOGLE_CLOUD_LOCATION=us-central1,MODEL=gemini-2.0-flash-001'
+  ]
+images:
+- 'europe-west1-docker.pkg.dev/$PROJECT_ID/adk-repo/adk-orchestrator:$_BUILD_ID' # <--- CHANGED REGION HERE
