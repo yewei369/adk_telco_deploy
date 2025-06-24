@@ -1,0 +1,9 @@
+play_agent/__pycache__/*
+telco_agent/__pycache__/*
+__pycache__/*
+
+.bash_history
+.bash_logout
+.bashrc
+.profile
+.sudo_as_admin_successful
