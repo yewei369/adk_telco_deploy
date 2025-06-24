@@ -3,15 +3,29 @@ fire==0.7.0
 python-dotenv==1.1.0
 fastapi==0.115.13
 uvicorn==0.34.3
+# click==8.2.1
+# h11==0.16.0
+# starlette==0.46.2
+# pydantic==2.11.7
+# pydantic_core==2.33.2
+# typing_extensions==4.14.0
+# typing_inspection==0.4.1
+# annotated_types==0.7.0
+# anyio==4.9.0
+# sniffio==1.3.1
 
 ## GCP frameworks
-google-cloud-aiplatform[adk,agent_engines]==1.88.0
-google-adk==1.2.1  # <--- Make sure this line is present
+google-cloud-aiplatform[adk,agent_engines]==1.95.1
+google-adk==1.2.1  
 google-cloud-bigquery==3.34.0
 google-cloud-storage==2.19.0
 google-api-python-client==2.172.0
 google-auth==2.40.3
 google-auth-httplib2==0.2.0
+google-genai==1.21.0
+google-generativeai==0.8.5
+#google-agent-development-kit
+#google_generative_ai_toolkit
 google-auth-oauthlib
 functions-framework
 

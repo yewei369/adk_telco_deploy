@@ -10,7 +10,7 @@ from google.adk.agents import SequentialAgent, LoopAgent, ParallelAgent
 from google.adk.tools import google_search  # The Google Search tool
 #from google.adk.tools.tool import Tool
 from google.adk.tools.tool_context import ToolContext
-from google.adk.tools.langchain_tool import LangchainTool  # import
+#from google.adk.tools.langchain_tool import LangchainTool  # import
 #from google.adk.tools.crewai_tool import CrewaiTool
 from google.genai import types
 

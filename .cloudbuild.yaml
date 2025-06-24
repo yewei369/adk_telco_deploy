@@ -14,10 +14,9 @@ steps:
     'push', 'europe-west1-docker.pkg.dev/$PROJECT_ID/adk-repo/adk-orchestrator:$_BUILD_ID' # <--- CHANGED REGION HERE
   ]
 # Deploy to Cloud Run
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
+- name: 'gcr.io/cloud-builders/cloud-run'
   args: [
-    'run', 'deploy', 'adk-orchestrator-service',
+    'deploy', 'telco-agent',
     '--image', 'europe-west1-docker.pkg.dev/$PROJECT_ID/adk-repo/adk-orchestrator:$_BUILD_ID', # <--- CHANGED REGION HERE
     '--region', 'europe-west1', # This was already correct
     '--platform', 'managed',
