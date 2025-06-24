@@ -1,5 +1,5 @@
 # Stage 0: Main Application - for building your actual service
-FROM python:3.12.3-slim-buster
+FROM python:3.12-slim-bookworm
 
 # Set the working directory in the container
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN apt-get update && \
 
 # --- CRITICAL NETWORK FIX: Force Google Public DNS ---
 # This addresses Errno -2 "Name or service not known" errors.
-RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf
+#RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf
 # --- End CRITICAL NETWORK FIX ---
 
 # Copy your application code and requirements.txt
@@ -31,7 +31,7 @@ RUN pip install -r requirements.txt --no-deps
 # --- CRITICAL ISOLATED ADK INSTALL ---
 # This step specifically installs google-agent-development-kit with the flags
 # that might be necessary.
-RUN pip install google-agent-development-kit --pre --extra-index-url https://pypi.google.com/pypi
+#RUN pip install google-agent-development-kit --pre --extra-index-url https://pypi.google.com/pypi
 # --- End CRITICAL ISOLATED ADK INSTALL ---
 
 # Expose the port that the app runs on
