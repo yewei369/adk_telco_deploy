@@ -25,9 +25,8 @@ docker run -it --name telco telco
 
 
 # to deploy
-## gcloud init
-## gcloud auth application-default login
-## GOOGLE_APPLICATION_CREDENTIALS= file from 'gcloud auth application-default login'
+gcloud init
+gcloud auth application-default login  (generate env for GOOGLE_APPLICATION_CREDENTIALS)
 
 gcloud run deploy telco-agent-2 \
 --source . \
@@ -35,5 +34,5 @@ gcloud run deploy telco-agent-2 \
 --platform managed \
 --allow-unauthenticated \
 --project hacker2025-team-212-dev \
---set-env-vars="GOOGLE_GENAI_USE_VERTEXAI=TRUE,GOOGLE_CLOUD_PROJECT=hacker2025-team-212-dev,GOOGLE_CLOUD_LOCATION=us-central1,MODEL=gemini-2.0-flash-001,GOOGLE_APPLICATION_CREDENTIALS=application_default_credentials.json" \
+--set-env-vars="GOOGLE_GENAI_USE_VERTEXAI=TRUE,GOOGLE_CLOUD_PROJECT=hacker2025-team-212-dev,GOOGLE_CLOUD_LOCATION=us-central1,MODEL=gemini-2.0-flash-001" \
 --service-account only4cloudrun@hacker2025-team-212-dev.iam.gserviceaccount.com
